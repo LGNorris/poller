@@ -7,7 +7,9 @@ const Home: NextPage = () => {
     return (
         <div>
             {data?.map((website) => (
-                <a href={`/sites/${website.urlSlug}`}>{website.siteUrl}</a>
+                <a href={`/sites/${website.urlSlug}`} key={website.id}>
+                    {website.siteUrl}
+                </a>
             ))}
         </div>
     );
