@@ -9,27 +9,17 @@ datasource db {
     referentialIntegrity = "prisma"
 }
 
-model PollQuestion {
-    id         String    @id @default(cuid())
-    createdAt  DateTime  @default(now())
-    endsAt     DateTime?
-    question   String    @db.VarChar(5000)
-    ownerToken String    @db.VarChar(255)
-    options    Json
-    Vote       Vote[]
+model Website {
+    id            String    @id @default(cuid())
+    urlSlug       String    @db.VarChar(255)
+    createdAt     DateTime  @default(now())
+    endsAt        DateTime?
+    siteUrl       String    @db.VarChar(5000)
+    primaryFont   String    @db.VarChar(255)
+    secondaryFont String    @db.VarChar(255)
+    options       Json
+    author        String    @db.VarChar(255)
 
-    @@index([ownerToken])
-}
-
-model Vote {
-    id         String       @id @default(cuid())
-    createdAt  DateTime     @default(now())
-    choice     Int
-    voterToken String       @db.VarChar(255)
-    question   PollQuestion @relation(fields: [questionId], references: [id])
-    questionId String
-
-    @@unique([voterToken, questionId])
-    @@index([voterToken])
-    @@index([questionId])
+    @@index([author])
+    @@index([urlSlug])
 }
