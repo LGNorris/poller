@@ -1,0 +1,34 @@
+.moveArea {
+    font-size: 32px;
+    font-family: "Arial";
+    letter-spacing: -2px;
+}
+.container {
+    width: 100%;
+    font-size: 26px;
+}
+.eye {
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    border: 1px solid black;
+}
+.eye:after {
+    /*pupil*/
+    position: absolute;
+    display: inline-block;
+    bottom: 9px;
+    right: 9px;
+    width: 9px;
+    height: 9px;
+    background: #000;
+    border-radius: 50%;
+    content: " ";
+}
+.letter {
+    display: inline;
+    margin-right: 2px;
+    margin-left: -1px;
+}

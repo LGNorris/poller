@@ -9,17 +9,29 @@ datasource db {
     referentialIntegrity = "prisma"
 }
 
+model Image {
+    id         String  @id @unique @default(cuid())
+    publicId   String  @unique
+    format     String  @db.VarChar(255)
+    version    String  @db.VarChar(255)
+    src        String  @db.VarChar(255)
+    website    Website @relation(fields: [websiteUrl], references: [siteUrl])
+    websiteUrl String
+}
+
 model Website {
-    id            String    @id @default(cuid())
-    urlSlug       String    @db.VarChar(255)
+    id            String    @id @unique @default(cuid())
+    urlSlug       String    @unique @db.VarChar(255)
     createdAt     DateTime  @default(now())
     endsAt        DateTime?
     siteUrl       String    @db.VarChar(5000)
+    siteName      String    @db.VarChar(255)
     primaryFont   String    @db.VarChar(255)
     secondaryFont String    @db.VarChar(255)
     options       Json
     author        String    @db.VarChar(255)
 
+    Image Image[]
     @@index([author])
     @@index([urlSlug])
 }

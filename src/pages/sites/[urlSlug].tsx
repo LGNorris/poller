@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { trpc } from "../../utils/trpc";
 
-const WebsitePageContent: React.FC<{ urlSlug: string }> = ({ urlSlug }) => {
+const SingleSitePageContents: React.FC<{ urlSlug: string }> = ({ urlSlug }) => {
     const { data } = trpc.useQuery(["website-by-id", { urlSlug }]);
 
     if (!data || !data?.urlSlug) {
@@ -33,15 +33,14 @@ const WebsitePageContent: React.FC<{ urlSlug: string }> = ({ urlSlug }) => {
     );
 };
 
-const WebsitePage = () => {
+const SingleSitePage = () => {
     const { query } = useRouter();
     const { urlSlug } = query;
-
     if (!urlSlug || typeof urlSlug !== "string") {
         return <div>No slug</div>;
     }
 
-    return <WebsitePageContent urlSlug={urlSlug} />;
+    return <SingleSitePageContents urlSlug={urlSlug} />;
 };
 
-export default WebsitePage;
+export default SingleSitePage;
